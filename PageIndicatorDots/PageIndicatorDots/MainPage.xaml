@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PageIndicatorDots"
+             xmlns:controls="clr-namespace:PageIndicatorDots.Controls;assembly=PageIndicatorDots"
+             x:Class="PageIndicatorDots.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel></local:MainViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout Margin="20">
+        <controls:PageIndicator HorizontalOptions="Center" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"></controls:PageIndicator>
+        <ListView  ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding Name}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

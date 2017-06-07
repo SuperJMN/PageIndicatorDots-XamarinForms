@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctr="clr-namespace:PageIndicatorDots.Controls;assembly=PageIndicatorDots"
+             x:Class="PageIndicatorDots.Controls.PageIndicator">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ctr:ColorConverter x:Key="ColorConverter" ColorForFalse="#D7D7D7" ColorForTrue="Red" />
+
+            <OnIdiom x:Key="CircleSize" x:TypeArguments="x:Double">
+                <OnIdiom.Tablet>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="20" />
+                        <On Platform="WinPhone" Value="10" />
+                        <On Platform="Windows" Value="10" />
+                        <On Platform="iOS" Value="7" />
+                    </OnPlatform>
+                </OnIdiom.Tablet>
+                <OnIdiom.Desktop>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Windows" Value="10" />
+                    </OnPlatform>
+                </OnIdiom.Desktop>
+                <OnIdiom.Phone>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="10" />
+                        <On Platform="WinPhone" Value="10" />
+                        <On Platform="iOS" Value="7" />
+                    </OnPlatform>
+                </OnIdiom.Phone>
+            </OnIdiom>
+           
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <ctr:BindableStackLayout ItemsSource="{TemplateBinding SelectableItems}" Orientation="Horizontal" HeightRequest="{StaticResource CircleSize}" Spacing="2">
+                <ctr:BindableStackLayout.ItemTemplate>
+                    <DataTemplate>
+                        <ctr:ShapeView WidthRequest="{StaticResource CircleSize}" ShapeType="Circle"
+                                       Color="{Binding IsSelected, Mode=OneWay, Converter={StaticResource ColorConverter}}">
+
+                            <ctr:ShapeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{TemplateBinding SelectItemCommand}" CommandParameter="{Binding}" />
+                            </ctr:ShapeView.GestureRecognizers>
+                        </ctr:ShapeView>
+                    </DataTemplate>
+                </ctr:BindableStackLayout.ItemTemplate>
+            </ctr:BindableStackLayout>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>
