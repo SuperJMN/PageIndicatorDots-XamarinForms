@@ -1,4 +1,4 @@
-=250x# PageIndicatorDots for Xamarin Forms
+# PageIndicatorDots for Xamarin Forms
 
 A project featuring a Page Indicator control (dots)
 
